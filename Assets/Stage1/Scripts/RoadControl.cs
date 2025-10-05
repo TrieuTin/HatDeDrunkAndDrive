@@ -47,7 +47,7 @@ public class RoadControl : MonoBehaviour
     {
         current_score += score_text_size * Time.deltaTime;
 
-        score_text.text = current_score.ToString("F2") + "Km";
+        score_text.text = current_score.ToString("F2") ;
     }
     void Spawn(float zPos)
     {
@@ -64,9 +64,10 @@ public class RoadControl : MonoBehaviour
     }
    void SpawnNext()
     {
-        //get last position
-        ///roadLength = 20;
+        //lay do dai cua doan duong chia 2
+        
         roadLength = instantRoad[ListCount - 1].GetComponent<Collider>().bounds.size.z / 2;
+        //lay diem origin z cua doan duong cong cho nua doan duong nhan voi 2
         var newZ = instantRoad[ListCount-1 ].transform.position.z + roadLength *2;
    
         Spawn(newZ);
@@ -78,7 +79,7 @@ public class RoadControl : MonoBehaviour
         if (Obstacles.Count > 0)
         {
             var currentZ = Vector3.zero;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (currentZ != Vector3.zero)
                 {
@@ -93,7 +94,7 @@ public class RoadControl : MonoBehaviour
                 }
                 else
                 {
-                    var pos = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(newZ - 5, roadLength + currentZ.z));
+                    var pos = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(newZ - 5, newZ + currentZ.z));
 
                     currentZ = pos;
 

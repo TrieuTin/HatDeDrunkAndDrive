@@ -18,7 +18,7 @@ public class CarControl2 : MonoBehaviour
     private Vector3 backTarget;
     void Update()
     {
-        if (!collided)
+        if (!collided) /*chua va cham*/
         {
 
             //Move
@@ -26,7 +26,9 @@ public class CarControl2 : MonoBehaviour
             transform.position += Moveforce * Time.deltaTime;
             //transform.position += transform.forward * MoveSpeed * Time.deltaTime;
 
+//tinh diem Km doan duong
             GameObject.Find("GM").GetComponent<RoadControl>().Score();
+
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
@@ -46,7 +48,7 @@ public class CarControl2 : MonoBehaviour
         {
             /*bat dau lui theo tuyen tinh*/
             transform.position = Vector3.MoveTowards(transform.position, backTarget, MoveSpeed * Time.deltaTime);
-            /*neu khoang cach lui duoi .01 thi stop*/
+            /*neu khoang cach lui nho hon .01f thi stop*/
             if (Vector3.Distance(transform.position, backTarget) < 0.01f)
             {
                 MoveSpeed = 0f;
@@ -59,7 +61,6 @@ public class CarControl2 : MonoBehaviour
     {
         if (other.CompareTag("Obstacles"))
         {
-            
             collided = true;
             MoveSpeed = .98f;
             /*tinh khoang cach lui*/
